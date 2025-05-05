@@ -1,1 +1,7 @@
 .vscode
+*.o
+*.dbg
+
+src/*.o
+src/*.dbg
+main

@@ -1,4 +1,4 @@
-#include "header/all.h"
+#include "headers/all.h"
 using namespace std;
 
 int main() {

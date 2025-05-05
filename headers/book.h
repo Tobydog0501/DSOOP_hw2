@@ -1,3 +1,5 @@
+#ifndef BOOK_H
+#define BOOK_H
 #include "common.h"
 using namespace std;
 
@@ -23,3 +25,5 @@ class book{
         void modify_copies(int c); // check out(negetive) or return(positive)
         ~book();
 };  
+
+#endif
