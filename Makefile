@@ -18,7 +18,7 @@ test: $(TEST) $(SRCOBJS)
 .PHONY: test
 
 dtest: test.dbg $(DBGOBJS)
-	$(CC) -D DEBUG $< $(DBGOBJS) -o $(EXE)
+	$(CC) -D DEBUG $< $(DBGOBJS) -o $(EXE) -g
 .PHONY: dtest
 
 %.o: %.cpp
@@ -29,7 +29,7 @@ dtest: test.dbg $(DBGOBJS)
 
 
 debug: main.dbg $(DBGOBJS)
-	$(CC) $< $(DBGOBJS) -o $(EXE)
+	$(CC) $< $(DBGOBJS) -o $(EXE) -g
 .PHONY: debug
 
 clean:

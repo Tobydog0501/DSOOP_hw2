@@ -14,7 +14,7 @@ class book{
         int copies;
         int available_copies;
     public:
-        book(string name, string author, string publisher, string ISBN, time_t publication_date, int copies, int available_copies);
+        book(string name, string author, string publisher, string ISBN, time_t publication_date, int copies);
         string get_name();
         string get_author();
         string get_publisher();
