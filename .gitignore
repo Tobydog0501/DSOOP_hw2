@@ -5,3 +5,5 @@
 src/*.o
 src/*.dbg
 main
+
+database.txt

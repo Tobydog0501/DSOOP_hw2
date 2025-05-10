@@ -2,6 +2,9 @@ CC=g++
 MAIN=main.o
 TEST=test.o
 SHELL = /bin/bash
+FLAGS=
+GUIFLAGS = -DGUI
+DEBUGFLAGS = -DDEBUG -g
 EXE=main
 SOURCEDIR=src
 SRCFILES=$(wildcard $(SOURCEDIR)/*.cpp)
@@ -13,23 +16,33 @@ all: $(MAIN) $(SRCOBJS)
 	$(CC) $(MAIN) $(SRCOBJS) -o $(EXE) -lm
 
 
+debug: FLAGS=$(DEBUGFLAGS)
+debug: main.dbg $(DBGOBJS)
+	$(CC) $(DEBUGFLAGS) $< $(DBGOBJS) -o $(EXE)
+
+gui: FLAGS=$(GUIFLAGS)
+gui: $(MAIN) $(SRCOBJS)
+	$(CC) $(FLAGS) $(MAIN) $(SRCOBJS) -o $(EXE) -lm
+
+dgui: FLAGS=$(GUIFLAGS) $(DEBUGFLAGS)
+dgui: main.dbg $(DBGOBJS)
+	$(CC) $(FLAGS) $< $(DBGOBJS) -o $(EXE)
+
 test: $(TEST) $(SRCOBJS)
 	$(CC) $(TEST) $(SRCOBJS) -o $(EXE) -lm
 .PHONY: test
 
+dtest: FLAGS=$(DEBUGFLAGS)
 dtest: test.dbg $(DBGOBJS)
-	$(CC) -D DEBUG $< $(DBGOBJS) -o $(EXE) -g
-.PHONY: dtest
+	$(CC) $(FLAGS) $< $(DBGOBJS) -o $(EXE)
+# .PHONY: dtest
 
 %.o: %.cpp
-	@$(CC) -c $< -o $@
+	@$(CC) $(FLAGS) -c $< -o $@
 	
 %.dbg: %.cpp
-	@$(CC) -D DEBUG -g -c $< -o $@
+	@$(CC) $(FLAGS) -c $< -o $@
 
-
-debug: main.dbg $(DBGOBJS)
-	$(CC) $< $(DBGOBJS) -o $(EXE) -g
 .PHONY: debug
 
 clean:

@@ -15,12 +15,13 @@ public:
     ~shelf();
     pos get_last();
     pos get_root();
+    vector<book*> get_all_books();
     void swap(pos p1, pos p2);
     bool is_root(pos& idx);
     pos left(pos &idx);
     pos right(pos &idx);
     pos get_parent(pos &idx);
-    void insert(book* b);
+    bool insert(book* b);
     void pop();
     vector<PSI>* show_by_time();
     book* search(string name);

@@ -5,4 +5,6 @@
 #include <string>
 #include <vector>
 #include "debug.h"
+#include <fstream>
+#include <sstream>
 #endif

@@ -5,7 +5,8 @@
 #include "shelf.h"
 using namespace std;
 
-void create_book(shelf *s,string name, string author, string publisher, string ISBN, time_t publication_date, int copies);
+bool create_book(shelf *s,string name, string author, string publisher, string ISBN, time_t publication_date, int copies);
+bool create_book(shelf *s,string name, string author, string publisher, string ISBN, time_t publication_date, int copies,int avail);
 
 bool borrow(shelf *s, string name, int copies);
 

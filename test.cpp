@@ -18,9 +18,16 @@ int main() {
     borrow(s, "The Great Gatsby", 2);
     show_book_by_time(s);
     borrow(s, "The Great Gatsby", 2);
+    borrow(s, "1984", 2);
     show_book_by_time(s);
     return_book(s, "The Great Gatsby", 7);
     show_book_by_time(s);
+    // c_return_book(s); 
+    add_book(s);
+    show_book_by_time(s);
+    remove_book(s);
+    show_book_by_time(s);
+    // show_details(s);
     // book* b = s->search("1984");
     return 0;
 }

@@ -55,7 +55,11 @@ pos shelf::get_parent(pos &idx) {
     return books.begin() + parent_k;
 }
 
-void shelf::insert(book* b) {
+bool shelf::insert(book* b) {
+    if(this->search(b->get_name()) != nullptr){
+        deprint("Book already exists\n");
+        return 0;
+    }
     books.push_back(b);
     pos current = get_last();
     while (!is_root(current)) {
@@ -67,6 +71,7 @@ void shelf::insert(book* b) {
             break;
         }
     }
+    return 1;
 }
 
 void shelf::pop() {
@@ -150,4 +155,9 @@ book* shelf::search_by_ISBN(string ISBN) {
         }
     }
     return nullptr;
+}
+
+
+vector<book*> shelf::get_all_books(){
+    return this->books;
 }

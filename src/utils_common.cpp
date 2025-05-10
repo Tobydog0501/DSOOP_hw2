@@ -1,12 +1,28 @@
 #include "../headers/all.h"
 using namespace std;
 
-void create_book(shelf *s,string name, string author, string publisher, string ISBN, time_t publication_date, int copies){
-    book* b = new book(name, author, publisher, ISBN, publication_date, copies);
-    s->insert(b);
-    deprint("Book added successfully\n");
+bool create_book(shelf *s,string name, string author, string publisher, string ISBN, time_t publication_date, int copies,int avail){
+    book* b = new book(name, author, publisher, ISBN, publication_date, copies,avail);
+    if(s->insert(b)){
+        deprint("Book added successfully\n");
+        return true;
+    }else{
+        deprint("Book already exists\n");
+        return false;
+    }
+
 }
 
+bool create_book(shelf *s,string name, string author, string publisher, string ISBN, time_t publication_date, int copies){
+    book* b = new book(name, author, publisher, ISBN, publication_date, copies);
+    if(s->insert(b)){
+        deprint("Book added successfully\n");
+        return true;
+    }else{
+        deprint("Book already exists\n");
+        return false;
+    }
+}
 
 book* search(shelf *s, string name){
     book* b = s->search(name);
