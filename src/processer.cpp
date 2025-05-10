@@ -100,7 +100,7 @@ void read_database(shelf* s){
     // read from file
     ifstream file("database.txt");
     if (!file.is_open()) {
-        cout << "Error opening file" << endl;
+        deprint("Error opening file\n");
         return;
     }
     string line;
