@@ -16,11 +16,20 @@ void show_book_by_time(shelf* s) {
 
 void show_details(shelf* s) {
     cin.ignore();
+    int cmd;
+    cout << "Enter 0 to search by name, 1 to search by ISBN: ";
+    cin >> cmd;
     string name;
-    cout << "Enter book name: ";
-    // cin.ignore();
+    cout << "Enter book name/ISBN: ";
+    cin.ignore();
     getline(cin, name);
-    book* b = s->search(name);
+    book* b;
+    if(cmd == 0){
+        b = s->search(name);
+    }else{
+        b = s->search_by_ISBN(name);
+    }
+    // cin.ignore();
     if (b == nullptr) {
         printf("Book not found\n");
     } else {
