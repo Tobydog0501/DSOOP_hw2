@@ -9,7 +9,7 @@ int main() {
     deprint("CLI mode\n");
     while(1){
         printf("%-10s %s","COMMAND","OPERATIONS\n");
-        printf("%-10d %s",0,"Show books by time\n");
+        printf("%-10d %s",0,"Show books\n");
         printf("%-10d %s",1,"Show book details\n");
         printf("%-10d %s",2,"Borrow a book\n");
         printf("%-10d %s",3,"Return a book\n");

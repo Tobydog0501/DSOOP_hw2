@@ -6,7 +6,13 @@ void execute_cmd(int command, shelf* s){
     switch(command){
         case 0:
             #ifndef GUI
-            show_book_by_time(s);
+            int type;
+            cout << "Enter 0 to show by name, 1 to show by time: ";
+            cin >> type;
+            if(type == 0)
+                show_book_by_name(s);
+            else if(type == 1)
+                show_book_by_time(s);
             #else
             // show book in gui
             #endif
