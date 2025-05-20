@@ -6,6 +6,7 @@
 using namespace std;
 
 void show_book_by_time(shelf* s);
+void show_book_by_name(shelf* s);
 void show_details(shelf* s);
 void borrow_book(shelf* s);
 void c_return_book(shelf* s);

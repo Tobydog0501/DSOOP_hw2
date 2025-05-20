@@ -13,21 +13,58 @@ void show_book_by_time(shelf* s) {
     }
 }
 
+void show_book_by_name(shelf* s) {
+    vector<book*> book_list = s->search_by_year(0);
+    if (book_list.empty()) {
+        printf("No books available\n");
+    } else {
+        printf("%-30s %-5s\n","BOOK NAME","AVAILABLE COPIES");
+        for (const auto& book : book_list) {
+            printf("%-30s %16d\n", book->get_name().c_str(), book->get_available_copies());
+        }
+    }
+}
 
 void show_details(shelf* s) {
     cin.ignore();
     int cmd;
-    cout << "Enter 0 to search by name, 1 to search by ISBN: ";
+    cout << "Enter 0 to search by name, 1 to search by ISBN,2 to search by year: ";
     cin >> cmd;
     string name;
-    cout << "Enter book name/ISBN: ";
+    cout << "Enter book name/ISBN/Publish Year: ";
     cin.ignore();
     getline(cin, name);
     book* b;
     if(cmd == 0){
         b = s->search(name);
-    }else{
+    }else if(cmd == 1){
         b = s->search_by_ISBN(name);
+    }else if(cmd == 2){
+        vector<book*> books = s->search_by_year(stoi(name));
+        if (books.empty()) {
+            printf("No books available\n");
+            return;
+        }
+        printf("%-30s %-5s\n","BOOK NAME","AVAILABLE COPIES");
+        char date_str[11]; // Buffer for "YYYY/MM/DD" (10 chars) plus null terminator
+        for (const auto& b : books) {
+            time_t pub_date = b->get_publication_date();
+            struct tm *tm_ptr = localtime(&pub_date);
+            if (tm_ptr != nullptr) {
+                strftime(date_str, sizeof(date_str), "%Y/%m/%d", tm_ptr);
+            } else {
+                date_str[0] = '\0';
+            }
+            printf("Book details:\n");
+            printf("%-20s %20s\n","Name:", b->get_name().c_str());
+            printf("%-20s %20s\n","Author:", b->get_author().c_str());
+            printf("%-20s %20s\n","Publisher:", b->get_publisher().c_str());
+            printf("%-20s %20s\n","ISBN:", b->get_ISBN().c_str());
+            printf("%-20s %20s\n","Publication date:", date_str);
+            printf("%-20s %20d\n","Copies available:", b->get_available_copies());
+            printf("%-20s %20d\n","Total copies:", b->get_copies());
+        }
+        return;
     }
     // cin.ignore();
     if (b == nullptr) {
